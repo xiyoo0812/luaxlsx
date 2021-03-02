@@ -12,7 +12,7 @@
 - zlib
 
 # 用法
-{{{
+```lua
 local lexcel = require('luaxlsx')
 
 local workbook = lexcel.open(full_name)
@@ -33,7 +33,7 @@ for row = dim.firstRow, dim.lastRow do
         print(cell.type, cell.value)
     end
 end
-}}}
+```
 
 # 备注
 本库fork自MiniExcel(https://github.com/qcdong2016/MiniExcel) ，并修改了一些存在的BUG，该库已经不再更新。
