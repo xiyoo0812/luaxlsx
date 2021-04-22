@@ -2,14 +2,15 @@
 一个使用lua解析excel的xlsx/xlsm格式的库。
 
 # 编译
-- msvc : 准备好lua依赖库并放到指定位置，将proj文件加到sln后编译。
-- linux：准备好lua依赖库并放到指定位置，执行make -f luaxlsx.mak
+- msvc: 准备好lua依赖库并放到指定位置，将proj文件加到sln后编译。
+- linux: 准备好lua依赖库并放到指定位置，执行make -f luaxlsx.mak
+- lua路径: ../lua/src
 
 # 依赖
-- lua5.3
-- minizip
-- tinyxml2
-- zlib
+- lua5.2以上
+- minizip (已经包含在库内)
+- tinyxml2 (已经包含在库内)
+- zlib (已经包含在库内)
 
 # 用法
 ```lua
