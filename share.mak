@@ -31,6 +31,11 @@ endif
 
 MYLIBS += -lstdc++
 
+#项目目录
+ifndef SOLUTION_DIR
+SOLUTION_DIR=./
+endif
+
 #源代码目录
 ifndef SRC_DIR
 SRC_DIR = ./src
@@ -38,14 +43,14 @@ endif
 
 #临时文件目录
 ifndef INT_DIR
-INT_DIR = ../../temp/$(PROJECT_NAME)
+INT_DIR = $(SOLUTION_DIR)temp/$(PROJECT_NAME)
 endif
 
 #目标目录
 ifdef _LIB
-TARGET_DIR = ../../lib
+TARGET_DIR = $(SOLUTION_DIR)library
 else
-TARGET_DIR = ../../bin
+TARGET_DIR = $(SOLUTION_DIR)bin
 MYCFLAGS += -fPIC
 endif
 

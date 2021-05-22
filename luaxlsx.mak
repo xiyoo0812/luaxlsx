@@ -13,7 +13,7 @@ PROJECT_NO_PREFIX=1
 STDC_EX= -std=c++11
 
 # share.mak包含了一些编译选项，在这里可以添加新的选项和include目录
-MYCFLAGS = -I../lua/src -I./src/zlib -I./src/tinyxml2 -I./src/minizip -Wno-sign-compare
+MYCFLAGS = -I../lua/lua -I./src/zlib -I./src/tinyxml2 -I./src/minizip -Wno-sign-compare
 
 #share.mak包含了一些链接选项，在这里可以添加新的选项和lib目录
 MYLDFLAGS = 
