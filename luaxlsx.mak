@@ -7,19 +7,19 @@ PROJECT_TYPE = lib
 PROJECT_NO_PREFIX=1
 
 #是否静态库，定义后生成.a文件，否则生成.so文件
-#_STATIC=
+#_LIB=1
 
 #c++11
 STDC_EX= -std=c++11
 
 # share.mak包含了一些编译选项，在这里可以添加新的选项和include目录
-MYCFLAGS = -I../lua/lua -I./src/zlib -I./src/tinyxml2 -I./src/minizip -Wno-sign-compare
+MYCFLAGS = -I../lua/lua -I./src/zlib -I./src/tinyxml2 -I./src/minizip -Wno-sign-compare -D_LARGEFILE64_SOURCE
 
 #share.mak包含了一些链接选项，在这里可以添加新的选项和lib目录
 MYLDFLAGS = 
 
 #share.mak包含了一些公用的库,这里加上其他所需的库
-MYLIBS =
+MYLIBS =-llua
 
 #源文件路径
 SRC_DIR=./src
@@ -32,7 +32,7 @@ EXCLUDE_FILE=$(SRC_DIR)/minizip/minizip.c $(SRC_DIR)/minizip/miniunz.c
 MYOBJS = $(patsubst $(SRC_DIR)/%.cpp, $(INT_DIR)/%.o, $(wildcard $(SRC_DIR)/*.cpp))
 MYOBJS += $(patsubst $(SRC_DIR)/zlib/%.c, $(INT_DIR)/zlib/%.o, $(wildcard $(SRC_DIR)/zlib/*.c))
 MYOBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.cpp, $(INT_DIR)/tinyxml2/%.o, $(wildcard $(SRC_DIR)/tinyxml2/*.cpp))
-MYOBJS += $(patsubst $(SRC_DIR)/minizip/%.c, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/minizip/*.cpp)))
+MYOBJS += $(patsubst $(SRC_DIR)/minizip/%.c, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/minizip/*.c)))
 
 #伪目标
 .PHONY: clean all target pre_build post_build
