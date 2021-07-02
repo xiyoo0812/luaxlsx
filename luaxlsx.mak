@@ -28,18 +28,18 @@ SRC_DIR=./src
 EXCLUDE_FILE=$(SRC_DIR)/minizip/minizip.c $(SRC_DIR)/minizip/miniunz.c
 
 #目标文件，可以在这里定义，如果没有定义，share.mak会自动生成
-#MYOBJS=
-MYOBJS = $(patsubst $(SRC_DIR)/%.cpp, $(INT_DIR)/%.o, $(wildcard $(SRC_DIR)/*.cpp))
-MYOBJS += $(patsubst $(SRC_DIR)/zlib/%.c, $(INT_DIR)/zlib/%.o, $(wildcard $(SRC_DIR)/zlib/*.c))
-MYOBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.cpp, $(INT_DIR)/tinyxml2/%.o, $(wildcard $(SRC_DIR)/tinyxml2/*.cpp))
-MYOBJS += $(patsubst $(SRC_DIR)/minizip/%.c, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/minizip/*.c)))
+#ALL_OBJS=
+ALL_OBJS = $(patsubst $(SRC_DIR)/%.cpp, $(INT_DIR)/%.o, $(wildcard $(SRC_DIR)/*.cpp))
+ALL_OBJS += $(patsubst $(SRC_DIR)/zlib/%.c, $(INT_DIR)/zlib/%.o, $(wildcard $(SRC_DIR)/zlib/*.c))
+ALL_OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.cpp, $(INT_DIR)/tinyxml2/%.o, $(wildcard $(SRC_DIR)/tinyxml2/*.cpp))
+ALL_OBJS += $(patsubst $(SRC_DIR)/minizip/%.c, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE_FILE), $(wildcard $(SRC_DIR)/minizip/*.c)))
 
 #伪目标
 .PHONY: clean all target pre_build post_build
 all : pre_build target post_build
 
 #通用规则
-include ./share.mak
+include ../lua/share.mak
 
 #预编译
 pre_build:
