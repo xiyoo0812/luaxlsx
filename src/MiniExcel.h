@@ -1,7 +1,7 @@
 #ifndef _TINYXLSX_H_
 #define _TINYXLSX_H_
 
-#include <set>
+#include <map>
 #include <vector>
 #include <string>
 #include "tinyxml2.h"
@@ -13,6 +13,7 @@ namespace MiniExcel
     {
         std::string value;
         std::string type;
+        std::string fmt;
     };
 
     struct Range
@@ -72,7 +73,8 @@ namespace MiniExcel
         void parseCell(const std::string& value, int& row, int& col);
         void parseRange(const std::string& value, Range& range);
 
-        std::set<int> _dateFormats;
+        std::map<int, int> _formIds;
+        std::map<int, std::string> _fmtCodes;
         std::vector<std::string> _sharedString;
         std::vector<Sheet> _sheets;
         Zip* _zip;

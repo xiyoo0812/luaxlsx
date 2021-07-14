@@ -12,37 +12,22 @@
 
 namespace MiniExcel {
 
-bool isDateFormat(std::string x) {
-    for (size_t i = 0; i < x.size(); ++i) {
-        switch (x[i]) {
-        case 'd':
-        case 'D':
-        case 'm': // 'mm' for minutes
-        case 'M':
-        case 'y':
-        case 'Y':
-        case 'h': // 'hh'
-        case 'H':
-        case 's': // 'ss'
-        case 'S':
-            return true;
-        default:
-            break;
-        }
-    }
-    return false;
-}
-
-bool isDateTime(int id, const std::set<int> custom) {
+bool isDateTime(int id)
+{
     if ((id >= 14 && id <= 22) ||
         (id >= 27 && id <= 36) ||
         (id >= 45 && id <= 47) ||
         (id >= 50 && id <= 58) ||
         (id >= 71 && id <= 81))
+    {
         return true;
-    if (id < 164)
-        return false;
-    return custom.count(id) > 0;
+    }
+    return false;
+}
+
+bool isCustom(int id)
+{
+    return id > 165;
 }
 
 struct ZipEntryInfo
@@ -266,17 +251,15 @@ void ExcelFile::readStyles(const char* filename)
     tinyxml2::XMLElement *styleSheet = doc.FirstChildElement("styleSheet");
     if (styleSheet == NULL) return;
 
-    std::set<int> customDateFormats;
+    std::map<int, std::string> customDateFormats;
     tinyxml2::XMLElement *numFmts = styleSheet->FirstChildElement("numFmts");
     if (numFmts == NULL) return;
 
     for (tinyxml2::XMLElement *numFmt = numFmts->FirstChildElement(); numFmt; numFmt = numFmt->NextSiblingElement())
     {
         int id = atoi(numFmt->Attribute("numFmtId"));
-        if (isDateFormat(std::string(numFmt->Attribute("formatCode"))))
-        {
-            customDateFormats.insert(id);
-        }
+        std::string fmt = numFmt->Attribute("formatCode");
+        customDateFormats.insert(std::make_pair(id, fmt));
     }
 
     tinyxml2::XMLElement *cellXfs = styleSheet->FirstChildElement("cellXfs");
@@ -288,9 +271,15 @@ void ExcelFile::readStyles(const char* filename)
         const char *fi = cellXf->Attribute("numFmtId");
         if (fi)
         {
+            std::string fmt;
             int formatId = atoi(fi);
-            if (isDateTime(formatId, customDateFormats))
-                _dateFormats.insert(i);
+            std::map<int, std::string>::iterator iter = customDateFormats.find(formatId);
+            if (iter != customDateFormats.end())
+            {
+                fmt = iter->second;
+            }
+            _formIds.insert(std::make_pair(i, formatId));
+            _fmtCodes.insert(std::make_pair(formatId, fmt));
         }
         ++i;
     }
@@ -344,18 +333,31 @@ void ExcelFile::readCell(Cell* c, const char* t, const char* s, tinyxml2::XMLEle
     }
     if ((!t || !strcmp(t, "n")) && v) 
     {
-        if (s && _dateFormats.count(atoi(s)) > 0)
+        int idx = atoi(s);
+        std::map<int, int>::iterator iter = _formIds.find(idx);
+        if (iter == _formIds.end())
+        {
+            c->type = "error";
+            return;
+        }
+        c->value = v->GetText();
+        int formatId = iter->second;
+        std::map<int, std::string>::iterator iter2 = _fmtCodes.find(formatId);
+        if (iter2 != _fmtCodes.end())
+        {
+            c->fmt = iter2->second;
+        }
+        if (isDateTime(formatId))
         {
             c->type = "date";
-            //25569 => 1970.1.1 0:0:0
-            char temp_value[256];
-            sprintf(temp_value, "%.0f", 86400 * (atof(v->GetText()) - 25569) - 28800);
-            c->value = temp_value;
         }
-        else 
+        else if (isCustom(formatId))
+        {
+            c->type = "custom";
+        }
+        else
         {
             c->type = "number";
-            c->value = v->GetText();
         }
         return;
     }

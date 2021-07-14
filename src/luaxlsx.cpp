@@ -168,6 +168,8 @@ static int cell_func(lua_State* L)
         lua_pushstring(L, cell->value.c_str());
     else if (strcmp(name, "type") == 0)
         lua_pushstring(L, cell->type.c_str());
+    else if (strcmp(name, "fmt") == 0)
+        lua_pushstring(L, cell->fmt.c_str());
     else
         lua_pushnil(L);
 
