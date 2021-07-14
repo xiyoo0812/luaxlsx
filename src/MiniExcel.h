@@ -13,7 +13,8 @@ namespace MiniExcel
     {
         std::string value;
         std::string type;
-        std::string fmt;
+        std::string fmtCode;
+        int fmtId;
     };
 
     struct Range

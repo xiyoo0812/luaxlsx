@@ -62,7 +62,7 @@ static int l_open_excel(lua_State* L)
 static int l_excel_file_gc(lua_State* L) {
     ExcelFile* e = toExcel(L, 1);
 
-    if (e) 
+    if (e)
         delete e;
 
     return 0;
@@ -94,7 +94,7 @@ static int l_sheets(lua_State* L)
     {
         Sheet* sh = &sheets[i];
         newSheet(L, sh);
-        lua_rawseti(L, -2, i+1);
+        lua_rawseti(L, -2, i + 1);
     }
 
     return 1;
@@ -128,7 +128,7 @@ static int l_cell(lua_State* L)
     int col = luaL_checkinteger(L, 3);
 
     Cell* c = s->getCell(row, col);
-    
+
     if (c)
         newCell(L, c);
     else
@@ -168,8 +168,10 @@ static int cell_func(lua_State* L)
         lua_pushstring(L, cell->value.c_str());
     else if (strcmp(name, "type") == 0)
         lua_pushstring(L, cell->type.c_str());
-    else if (strcmp(name, "fmt") == 0)
-        lua_pushstring(L, cell->fmt.c_str());
+    else if (strcmp(name, "fmtCode") == 0)
+        lua_pushstring(L, cell->fmtCode.c_str());
+    else if (strcmp(name, "fmtId") == 0)
+        lua_pushinteger(L, cell->fmtId);
     else
         lua_pushnil(L);
 
@@ -196,14 +198,14 @@ static int range_func(lua_State* L)
 }
 
 
-static void newMetatable1(lua_State *L, const char * name, luaL_Reg *reg) {
+static void newMetatable1(lua_State* L, const char* name, luaL_Reg* reg) {
     luaL_newmetatable(L, name);
     luaL_setfuncs(L, reg, NULL);
     lua_pushvalue(L, -1);
     lua_setfield(L, -2, "__index");
 }
 
-static void newMetatable2(lua_State *L, const char* name, lua_CFunction f) {
+static void newMetatable2(lua_State* L, const char* name, lua_CFunction f) {
     luaL_newmetatable(L, name);
     lua_pushcfunction(L, f);
     lua_setfield(L, -2, "__index");
@@ -217,7 +219,7 @@ static int miniexcel_open(lua_State* L) {
 
     lua_newtable(L);
     luaL_setfuncs(L, mini_excel_functions, NULL);
-    
+
     return 1;
 }
 
@@ -229,9 +231,9 @@ static int miniexcel_open(lua_State* L) {
 
 extern "C"
 {
- LUAXLSX_API int luaopen_luaxlsx(lua_State *L) {
-    return miniexcel_open(L);
- } 
+    LUAXLSX_API int luaopen_luaxlsx(lua_State* L) {
+        return miniexcel_open(L);
+    }
 }
 
 

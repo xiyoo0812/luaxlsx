@@ -1,6 +1,6 @@
-local miniexcel = require "miniexcel"
+local lxlsx = require "luaxlsx"
 
-local x = miniexcel.open('test.xlsx')
+local x = lxlsx.open('test.xlsx')
 
 local sheets = x:sheets()
 
@@ -20,6 +20,7 @@ for i, sheet1 in ipairs(sheets) do
 
                 local str = "."
                 if cell then
+                    print(cell.type, cell.value, cell.fmtId, cell.fmtCode)
                     str = cell.value
                 end
 
