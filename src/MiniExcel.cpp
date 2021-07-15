@@ -326,6 +326,8 @@ namespace MiniExcel {
 
     void ExcelFile::readCell(Cell* c, const char* t, const char* s, tinyxml2::XMLElement* v)
     {
+        c->fmtId = 0;
+        c->fmtCode = "";
         if (!t && !v)
         {
             c->type = "blank";
@@ -338,14 +340,14 @@ namespace MiniExcel {
                 c->type = "error";
                 return;
             }
+            c->value = v->GetText();
             int idx = atoi(s);
             std::map<int, int>::iterator iter = _formIds.find(idx);
             if (iter == _formIds.end())
             {
-                c->type = "error";
+                c->type = "number";
                 return;
             }
-            c->value = v->GetText();
             int formatId = iter->second;
             std::map<int, std::string>::iterator iter2 = _fmtCodes.find(formatId);
             if (iter2 != _fmtCodes.end())
