@@ -226,7 +226,7 @@ static int miniexcel_open(lua_State* L) {
 #ifdef _MSC_VER
 #define LUAXLSX_API _declspec(dllexport)
 #else
-#define LUAXLSX_API 
+#define LUAXLSX_API extern
 #endif
 
 extern "C"
