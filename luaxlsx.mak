@@ -44,12 +44,14 @@ SRC_DIR = src
 
 #需要排除的源文件,目录基于$(SRC_DIR)
 EXCLUDE =
+EXCLUDE += $(SRC_DIR)/minizip/minizip.c
+EXCLUDE += $(SRC_DIR)/minizip/miniunz.c
 
 #需要连接的库文件
 LIBS =
 #是否启用mimalloc库
 LIBS += -lmimalloc -lpthread
-MYCFLAGS += -I../../mimalloc/mimalloc/include -include mimalloc-override.h
+MYCFLAGS += -I../../mimalloc/mimalloc/include -include ../../mimalloc-ex.h
 #系统库
 LIBS += -lm -ldl -lstdc++
 #自定义库
