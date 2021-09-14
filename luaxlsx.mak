@@ -11,16 +11,19 @@ UNAME_S = $(shell uname -s)
 .PHONY: clean all target pre_build post_build
 all : pre_build target post_build
 
-#FLAG
+#CFLAG
 MYCFLAGS =
 
 #需要定义的FLAG
 MYCFLAGS += -Wno-sign-compare
 
+#c标准库版本
+--gnu99/gnu11/gnu17
+STDC = -std=gnu99
 
-#标准库版本
-#gnu99/c++11/c++14/c++17/c++20
-MYCFLAGS += -std=gnu99
+#c++标准库版本
+--c++11/c++14/c++17/c++20
+STDCPP = -std=c++14
 
 #需要的include目录
 MYCFLAGS += -I../lua/lua
@@ -29,13 +32,15 @@ MYCFLAGS += -I./src/minizip
 MYCFLAGS += -I./src/tinyxml2
 
 #需要定义的选项
-LDFLAGS =
 ifeq ($(UNAME_S), Linux)
-LDFLAGS += -D_LARGEFILE64_SOURCE
+MYCFLAGS += -D_LARGEFILE64_SOURCE
 endif
 ifeq ($(UNAME_S), Darwin)
-LDFLAGS += -D_LARGEFILE64_SOURCE
+MYCFLAGS += -D_LARGEFILE64_SOURCE
 endif
+
+#LDFLAGS
+LDFLAGS =
 
 #需要附件link库目录
 
@@ -60,8 +65,8 @@ LIBS += -llua
 #定义基础的编译选项
 CC = gcc
 CX = c++
-CFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(MYCFLAGS)
-CXXFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(MYCFLAGS)
+CFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(STDC) $(MYCFLAGS)
+CXXFLAGS = -g -O2 -Wall -Wno-deprecated -Wextra -Wno-unknown-pragmas $(STDCPP) $(MYCFLAGS)
 
 #项目目录
 ifndef SOLUTION_DIR
