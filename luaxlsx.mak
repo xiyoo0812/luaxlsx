@@ -42,7 +42,6 @@ endif
 #LDFLAGS
 LDFLAGS =
 
-#需要附件link库目录
 
 #源文件路径
 SRC_DIR = src
