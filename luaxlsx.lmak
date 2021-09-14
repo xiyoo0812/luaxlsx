@@ -4,12 +4,8 @@ PROJECT_NAME = "luaxlsx"
 --目标名字
 TARGET_NAME = "luaxlsx"
 
---工程类型：static/dynamic/exe
+----工程类型: static/dynamic/exe
 PROJECT_TYPE = "dynamic"
-
---标准库版本
----std=gnu99/-std=c++11/-std=c++14/
-STDC = "-std=c++11"
 
 --需要的FLAGS
 FLAGS = {
@@ -25,7 +21,12 @@ INCLUDES = {
 }
 
 --LINUX需要定义的选项
-DEFINES = {
+LINUX_DEFINES = {
+	"_LARGEFILE64_SOURCE"
+}
+
+--DARWIN需要定义的选项
+DARWIN_DEFINES = {
 	"_LARGEFILE64_SOURCE"
 }
 
@@ -51,3 +52,6 @@ LIBS = {
 DEPS = {
 	"lualib"
 }
+
+--分组定义
+GROUP = "luaext"
