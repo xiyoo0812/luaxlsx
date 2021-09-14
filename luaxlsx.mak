@@ -115,15 +115,10 @@ OBJS += $(patsubst $(SRC_DIR)/%.c, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wi
 OBJS += $(patsubst $(SRC_DIR)/%.cc, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/*.cc)))
 OBJS += $(patsubst $(SRC_DIR)/%.m, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/*.m)))
 
-$(TARGET_STATIC) : $(OBJS)
-	ar rcs $@ $(OBJS)
-	ranlib $@
 
 $(TARGET_DYNAMIC) : $(OBJS)
-	$(CC) -o $@ -shared $(OBJS) $(LDFLAGS) $(LIBS) 
+	$(CC) -o $@ -shared $(OBJS) $(LDFLAGS) $(LIBS)
 
-$(TARGET_EXECUTE) : $(OBJS)
-	$(CC) -o $@  $(OBJS) $(LDFLAGS) $(LIBS) 
 
 # 编译所有源文件
 $(INT_DIR)/%.o : $(SRC_DIR)/%.cpp
@@ -139,16 +134,16 @@ $(INT_DIR)/%.o : $(SRC_DIR)/%.m
 target : $(TARGET_DYNAMIC)
 
 #clean伪目标
-clean : 
+clean :
 	rm -rf $(INT_DIR)
 
 #预编译
 pre_build:
 	mkdir -p $(INT_DIR)
 	mkdir -p $(TARGET_DIR)
-	mkdir -p zlib
-	mkdir -p minizip
-	mkdir -p tinyxml2
+	mkdir -p $(INT_DIR)/zlib
+	mkdir -p $(INT_DIR)/minizip
+	mkdir -p $(INT_DIR)/tinyxml2
 
 #后编译
 post_build:
