@@ -18,11 +18,11 @@ MYCFLAGS =
 MYCFLAGS += -Wno-sign-compare
 
 #c标准库版本
---gnu99/gnu11/gnu17
+#gnu99/gnu11/gnu17
 STDC = -std=gnu99
 
 #c++标准库版本
---c++11/c++14/c++17/c++20
+#c++11/c++14/c++17/c++20
 STDCPP = -std=c++14
 
 #需要的include目录
