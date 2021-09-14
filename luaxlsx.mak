@@ -94,26 +94,20 @@ LDFLAGS += -L$(TARGET_DIR)
 #自动生成目标
 OBJS =
 #子目录
-SUB_SRC_DIR = $(SRC_DIR)/zlib
-SUB_INT_DIR = $(INT_DIR)/zlib
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.cpp, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.cpp)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.cc, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.c)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.c, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.cc)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.m, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.m)))
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.cpp, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.cpp)))
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.cc, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.c)))
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.c, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.cc)))
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.m, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.m)))
 #子目录
-SUB_SRC_DIR = $(SRC_DIR)/minizip
-SUB_INT_DIR = $(INT_DIR)/minizip
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.cpp, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.cpp)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.cc, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.c)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.c, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.cc)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.m, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.m)))
+OBJS += $(patsubst $(SRC_DIR)/minizip/%.cpp, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/minizip/*.cpp)))
+OBJS += $(patsubst $(SRC_DIR)/minizip/%.cc, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/minizip/*.c)))
+OBJS += $(patsubst $(SRC_DIR)/minizip/%.c, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/minizip/*.cc)))
+OBJS += $(patsubst $(SRC_DIR)/minizip/%.m, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/minizip/*.m)))
 #子目录
-SUB_SRC_DIR = $(SRC_DIR)/tinyxml2
-SUB_INT_DIR = $(INT_DIR)/tinyxml2
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.cpp, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.cpp)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.cc, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.c)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.c, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.cc)))
-OBJS += $(patsubst $(SUB_SRC_DIR)/%.m, $(SUB_INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SUB_SRC_DIR)/*.m)))
+OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.cpp, $(INT_DIR)/tinyxml2/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/tinyxml2/*.cpp)))
+OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.cc, $(INT_DIR)/tinyxml2/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/tinyxml2/*.c)))
+OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.c, $(INT_DIR)/tinyxml2/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/tinyxml2/*.cc)))
+OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.m, $(INT_DIR)/tinyxml2/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/tinyxml2/*.m)))
 #根目录
 OBJS += $(patsubst $(SRC_DIR)/%.cpp, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/*.cpp)))
 OBJS += $(patsubst $(SRC_DIR)/%.c, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/*.c)))
