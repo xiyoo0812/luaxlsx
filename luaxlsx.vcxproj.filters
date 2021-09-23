@@ -4,6 +4,30 @@
     <ClInclude Include="src\MiniExcel.h">
       <Filter>inc</Filter>
     </ClInclude>
+    <ClInclude Include="src\minizip\crypt.h">
+      <Filter>minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\minizip\ioapi.h">
+      <Filter>minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\minizip\ioapi_buf.h">
+      <Filter>minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\minizip\ioapi_mem.h">
+      <Filter>minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\minizip\iowin32.h">
+      <Filter>minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\minizip\unzip.h">
+      <Filter>minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\minizip\zip.h">
+      <Filter>minizip</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tinyxml2\tinyxml2.h">
+      <Filter>tinyxml2</Filter>
+    </ClInclude>
     <ClInclude Include="src\zlib\crc32.h">
       <Filter>zlib</Filter>
     </ClInclude>
@@ -37,37 +61,40 @@
     <ClInclude Include="src\zlib\zutil.h">
       <Filter>zlib</Filter>
     </ClInclude>
-    <ClInclude Include="src\minizip\crypt.h">
-      <Filter>minizip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\minizip\ioapi.h">
-      <Filter>minizip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\minizip\ioapi_buf.h">
-      <Filter>minizip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\minizip\ioapi_mem.h">
-      <Filter>minizip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\minizip\iowin32.h">
-      <Filter>minizip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\minizip\unzip.h">
-      <Filter>minizip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\minizip\zip.h">
-      <Filter>minizip</Filter>
-    </ClInclude>
-    <ClInclude Include="src\tinyxml2\tinyxml2.h">
-      <Filter>tinyxml2</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\MiniExcel.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
     <ClCompile Include="src\luaxlsx.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\MiniExcel.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\minizip\ioapi.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minizip\ioapi_buf.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minizip\ioapi_mem.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minizip\iowin32.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minizip\miniunz.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minizip\minizip.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minizip\unzip.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\minizip\zip.c">
+      <Filter>minizip</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tinyxml2\tinyxml2.cpp">
+      <Filter>tinyxml2</Filter>
     </ClCompile>
     <ClCompile Include="src\zlib\adler32.c">
       <Filter>zlib</Filter>
@@ -113,33 +140,6 @@
     </ClCompile>
     <ClCompile Include="src\zlib\zutil.c">
       <Filter>zlib</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\ioapi.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\ioapi_buf.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\ioapi_mem.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\iowin32.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\miniunz.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\minizip.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\unzip.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\minizip\zip.c">
-      <Filter>minizip</Filter>
-    </ClCompile>
-    <ClCompile Include="src\tinyxml2\tinyxml2.cpp">
-      <Filter>tinyxml2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
