@@ -94,11 +94,6 @@ LDFLAGS += -L$(SOLUTION_DIR)library
 #自动生成目标
 OBJS =
 #子目录
-OBJS += $(patsubst $(SRC_DIR)/zlib/%.c, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.c)))
-OBJS += $(patsubst $(SRC_DIR)/zlib/%.m, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.m)))
-OBJS += $(patsubst $(SRC_DIR)/zlib/%.cc, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.cc)))
-OBJS += $(patsubst $(SRC_DIR)/zlib/%.cpp, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.cpp)))
-#子目录
 OBJS += $(patsubst $(SRC_DIR)/minizip/%.c, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/minizip/*.c)))
 OBJS += $(patsubst $(SRC_DIR)/minizip/%.m, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/minizip/*.m)))
 OBJS += $(patsubst $(SRC_DIR)/minizip/%.cc, $(INT_DIR)/minizip/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/minizip/*.cc)))
@@ -108,6 +103,11 @@ OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.c, $(INT_DIR)/tinyxml2/%.o, $(filter-ou
 OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.m, $(INT_DIR)/tinyxml2/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/tinyxml2/*.m)))
 OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.cc, $(INT_DIR)/tinyxml2/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/tinyxml2/*.cc)))
 OBJS += $(patsubst $(SRC_DIR)/tinyxml2/%.cpp, $(INT_DIR)/tinyxml2/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/tinyxml2/*.cpp)))
+#子目录
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.c, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.c)))
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.m, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.m)))
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.cc, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.cc)))
+OBJS += $(patsubst $(SRC_DIR)/zlib/%.cpp, $(INT_DIR)/zlib/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/zlib/*.cpp)))
 #根目录
 OBJS += $(patsubst $(SRC_DIR)/%.c, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/*.c)))
 OBJS += $(patsubst $(SRC_DIR)/%.m, $(INT_DIR)/%.o, $(filter-out $(EXCLUDE), $(wildcard $(SRC_DIR)/*.m)))
@@ -138,9 +138,9 @@ clean :
 pre_build:
 	mkdir -p $(INT_DIR)
 	mkdir -p $(TARGET_DIR)
-	mkdir -p $(INT_DIR)/zlib
 	mkdir -p $(INT_DIR)/minizip
 	mkdir -p $(INT_DIR)/tinyxml2
+	mkdir -p $(INT_DIR)/zlib
 
 #后编译
 post_build:
