@@ -144,19 +144,19 @@
   </ItemGroup>
   <ItemGroup>
     <Filter Include="inc">
-      <UniqueIdentifier >{CF9F3FDE-7326-F1D8-E642-05F0E07A3695}</UniqueIdentifier>
+      <UniqueIdentifier>{CF9F3FDE-7326-F1D8-E642-05F0E07A3695}</UniqueIdentifier>
     </Filter>
     <Filter Include="minizip">
-      <UniqueIdentifier >{1459B8F9-8936-6478-273B-7B9B6E2ED2EE}</UniqueIdentifier>
+      <UniqueIdentifier>{1459B8F9-8936-6478-273B-7B9B6E2ED2EE}</UniqueIdentifier>
     </Filter>
     <Filter Include="src">
-      <UniqueIdentifier >{25D902C2-4283-AB8C-FBAC-54DFA101AD31}</UniqueIdentifier>
+      <UniqueIdentifier>{25D902C2-4283-AB8C-FBAC-54DFA101AD31}</UniqueIdentifier>
     </Filter>
     <Filter Include="tinyxml2">
-      <UniqueIdentifier >{3AE9595F-ECAF-37F5-751A-B711AD4B530C}</UniqueIdentifier>
+      <UniqueIdentifier>{3AE9595F-ECAF-37F5-751A-B711AD4B530C}</UniqueIdentifier>
     </Filter>
     <Filter Include="zlib">
-      <UniqueIdentifier >{7A990D40-5D2C-6FB9-3AA8-FBB0EC1A3B23}</UniqueIdentifier>
+      <UniqueIdentifier>{7A990D40-5D2C-6FB9-3AA8-FBB0EC1A3B23}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
