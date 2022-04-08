@@ -224,9 +224,12 @@ static int miniexcel_open(lua_State* L) {
     return 1;
 }
 
-extern "C" LUALIB_API int luaopen_luaxlsx(lua_State* L) {
-    return miniexcel_open(L);
+extern "C" {
+    LUALIB_API int luaopen_luaxlsx(lua_State* L) {
+        return miniexcel_open(L);
+    }
 }
+
 
 
 
