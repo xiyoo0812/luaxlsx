@@ -1,9 +1,10 @@
+#define LUA_LIB
 
 extern "C"
 {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
+    #include "lua.h"
+    #include "lualib.h"
+    #include "lauxlib.h"
 }
 
 #include "MiniExcel.h"
@@ -223,17 +224,8 @@ static int miniexcel_open(lua_State* L) {
     return 1;
 }
 
-#ifdef _MSC_VER
-#define LUAXLSX_API _declspec(dllexport)
-#else
-#define LUAXLSX_API extern
-#endif
-
-extern "C"
-{
-    LUAXLSX_API int luaopen_luaxlsx(lua_State* L) {
-        return miniexcel_open(L);
-    }
+extern "C" LUALIB_API int luaopen_luaxlsx(lua_State* L) {
+    return miniexcel_open(L);
 }
 
 
