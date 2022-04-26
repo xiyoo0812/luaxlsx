@@ -30,90 +30,35 @@ namespace MiniExcel {
         return id > 165;
     }
 
-    struct ZipEntryInfo
-    {
-        unz_file_pos pos;
-        uLong uncompressed_size;
-    };
-
-    class Zip
-    {
-    public:
-        ~Zip();
-
-        bool open(const char* file);
-        bool openXML(const char* filename, tinyxml2::XMLDocument& doc);
-
-    private:
-        unsigned char* getFileData(const char* filename, unsigned long& size);
-        std::map<std::string, ZipEntryInfo> _files;
-        unzFile _zipFile;
-    };
-
     Zip::~Zip()
     {
-        unzClose(_zipFile);
+        mz_zip_reader_end(&zip);
     }
 
     bool Zip::open(const char* file)
     {
-        _zipFile = unzOpen(file);
-
-        if (!_zipFile)
-            return false;
-
-        char szCurrentFileName[PATH_MAX];
-        unz_file_info64 fileInfo;
-
-        int err = unzGoToNextFile2(_zipFile, &fileInfo,
-            szCurrentFileName, sizeof(szCurrentFileName) - 1, nullptr, 0, nullptr, 0);
-        while (err == UNZ_OK)
+        memset(&zip, 0, sizeof(zip));
+        if (!mz_zip_reader_init_file(&zip, file, 0))
         {
-            unz_file_pos posInfo;
-            if (unzGetFilePos(_zipFile, &posInfo) == UNZ_OK)
-            {
-                std::string currentFileName = szCurrentFileName;
-
-                ZipEntryInfo entry;
-                entry.pos = posInfo;
-                entry.uncompressed_size = (uLong)fileInfo.uncompressed_size;
-                _files[currentFileName] = entry;
-            }
-            err = unzGoToNextFile2(_zipFile, &fileInfo,
-                szCurrentFileName, sizeof(szCurrentFileName) - 1, nullptr, 0, nullptr, 0);
+            return false;
         }
-
         return true;
     }
 
-    unsigned char* Zip::getFileData(const char* filename, unsigned long& size)
+    unsigned char* Zip::getFileData(const char* filename, size_t& size)
     {
-        unsigned char* pBuffer = NULL;
+        int file_index = mz_zip_reader_locate_file(&zip, filename, NULL, 0);
+        if (file_index < 0) return NULL;
 
-        auto it = _files.find(filename);
-
-        if (it == _files.end()) return NULL;
-
-        ZipEntryInfo fileInfo = it->second;
-
-        int nRet = unzGoToFilePos(_zipFile, &fileInfo.pos);
-        if (UNZ_OK != nRet) return NULL;
-
-        nRet = unzOpenCurrentFile(_zipFile);
-        if (UNZ_OK != nRet) return NULL;
-
-        pBuffer = new unsigned char[fileInfo.uncompressed_size];
-        unzReadCurrentFile(_zipFile, pBuffer, fileInfo.uncompressed_size);
-
-        size = fileInfo.uncompressed_size;
-        unzCloseCurrentFile(_zipFile);
+        unsigned char* pBuffer = (unsigned char*)mz_zip_reader_extract_to_heap(&zip, file_index, &size, 0);
+        if (!pBuffer) return NULL;
 
         return pBuffer;
     }
 
     bool Zip::openXML(const char* filename, tinyxml2::XMLDocument& doc)
     {
-        unsigned long size = 0;
+        size_t size = 0;
         unsigned char* data = getFileData(filename, size);
 
         if (!data) return false;

@@ -4,8 +4,8 @@
 #include <map>
 #include <vector>
 #include <string>
+#include "miniz.h"
 #include "tinyxml2.h"
-#include "unzip.h"
 
 namespace MiniExcel
 {
@@ -51,7 +51,18 @@ namespace MiniExcel
         std::vector<Cell*> _cells;
     };
 
-    class Zip;
+    class Zip
+    {
+    public:
+        ~Zip();
+
+        bool open(const char* file);
+        bool openXML(const char* filename, tinyxml2::XMLDocument& doc);
+
+    private:
+        unsigned char* getFileData(const char* filename, size_t& size);
+        mz_zip_archive zip;
+    };
 
     class ExcelFile
     {

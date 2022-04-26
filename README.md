@@ -2,9 +2,7 @@
 一个使用lua解析excel的xlsx/xlsm格式的库。
 
 # 依赖
-- zlib (已经包含在库内)
-- minizip (已经包含在库内)
-- tinyxml2 (已经包含在库内)
+- miniz (已经包含在库内)
 - [lua](https://github.com/xiyoo0812/lua.git)5.2以上
 - 项目路径如下<br>
   |--proj <br>
@@ -38,6 +36,3 @@ for row = dim.firstRow, dim.lastRow do
     end
 end
 ```
-
-# 备注
-本库fork自MiniExcel(https://github.com/qcdong2016/MiniExcel) ，并修改了一些存在的BUG，该库已经不再更新。

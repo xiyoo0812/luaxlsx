@@ -14,10 +14,7 @@ FLAGS = {
 
 --需要的include目录
 INCLUDES = {
-	"../lua/lua",
-	"./src/zlib",
-	"./src/minizip",
-	"./src/tinyxml2",
+	"../lua/lua"
 }
 
 --LINUX需要定义的选项
@@ -33,17 +30,6 @@ DARWIN_DEFINES = {
 --WINDOWS需要定义的选项
 WINDOWS_DEFINES = {
 	"LUA_BUILD_AS_DLL"
-}
-
---子目录路径
-
---自动搜索子目录
-AUTO_SUB_DIR = true
-
---需要排除的源文件,目录基于$(SRC_DIR)
-EXCLUDE_FILE={
-	"minizip/minizip.c",
-	"minizip/miniunz.c",
 }
 
 --需要连接的库文件
