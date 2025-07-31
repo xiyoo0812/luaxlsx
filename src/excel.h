@@ -92,6 +92,13 @@ namespace lxlsx {
                 lua_pushstring(L, v);
                 return 1;
             }
+            if (auto is = elem->FirstChildElement("is"); is) {
+                auto t = is->FirstChildElement("t");
+                if (t) {
+                    lua_pushstring(L, t->GetText());
+                    return 1;
+                }
+            }
             return 0;
         }
 
