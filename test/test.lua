@@ -1,30 +1,31 @@
-local lxlsx = require "luaxlsx"
+--xlsx_test.lua
+local log_debug     = logger.debug
 
-local x = lxlsx.open('test.xlsx')
+local xlsx = require("luaxlsx")
 
-local sheets = x.sheets()
+local excel = xlsx.open("test.xlsx")
 
-print(type(sheets), #sheets)
+local book  = excel.open("Sheet1")
+local a1    = book.get_cell_value(1, 1)
+local b1    = book.get_cell_value(1, 2)
+local a14   = book.get_cell_value(14, 1)
+local b14   = book.get_cell_value(14, 2)
+local c14   = book.get_cell_value(14, 3)
+local c1    = book.get_cell_value(1, 3)
 
-for i, sheet1 in ipairs(sheets) do
+log_debug("get cell a1: {}", a1)
+log_debug("get cell b1: {}", b1)
+log_debug("get cell c1: {}", c1)
+log_debug("get cell a14: {}", a14)
+log_debug("get cell b14: {}", b14)
+log_debug("get cell c14: {}", c14)
 
-    local f = io.open(sheet1.name .. '.txt', 'w')
-    print(sheet1.name())
+book.set_cell_value(1, 1, "word")
+book.set_cell_value(1, 2, 0.5)
+book.set_cell_value(14, 1, 0.6)
+book.set_cell_value(14, 2, 18880)
+book.set_cell_value(14, 3, 0.6)
+book.set_cell_value(1, 3, 88)
+book.set_cell_value(13, 4, nil)
 
-    for r = sheet1.first_row, sheet1.last_row do
-        local row_table = {}
-        for c = sheet1.first_col, sheet1.lastC_cl do
-                local cell = sheet1.get_cell(r, c)
-                local str = "."
-                if cell then
-                    print(cell.type, cell.value, cell.fmt_id, cell.fmt_code)
-                    str = cell.value
-                end
-
-                table.insert(row_table, string.format("%30s", str))
-        end
-        f:write(table.concat(row_table, '|') .. '\n')
-    end
-
-    f:close()
-end
+excel.save("test2.xlsx")

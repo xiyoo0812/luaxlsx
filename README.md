@@ -21,22 +21,51 @@
 # 用法
 ```lua
 local lexcel = require('luaxlsx')
+local log_debug = logger.debug
 
-local workbook = lexcel.open(full_name)
-if not workbook then
-    rint(sformat("open excel %s failed!", file))
+local excel = lexcel.open(full_name)
+if not excel then
+    print(sformat("open excel %s failed!", file))
     return
 end
+
 --只导出sheet1
-local sheets = workbook.sheets()
-local sheet = sheets and sheets[1]
+local books = excel.workbooks()
+local book = books and books[1]
 
 --sheet_name
-local sheet_name = sheet.name
-for row = dim.first_row_, dim.last_row_ do
-    for col = dim.first_col_, dim.last_col_ do
-        local cell = sheet.get_cell(row, col)
-        print(cell.type, cell.value)
+local book_name = book.name
+for row = 1, book.last_row do
+    for col = 1, book.last_col do
+        print(book.get_cell_value(row, col))
     end
 end
+
+
+local excel = xlsx.open("test.xlsx")
+local book  = excel.open("Sheet1")
+local a1    = book.get_cell_value(1, 1)
+local b1    = book.get_cell_value(1, 2)
+local a14   = book.get_cell_value(14, 1)
+local b14   = book.get_cell_value(14, 2)
+local c14   = book.get_cell_value(14, 3)
+local c1    = book.get_cell_value(1, 3)
+
+log_debug("get cell a1: {}", a1)
+log_debug("get cell b1: {}", b1)
+log_debug("get cell c1: {}", c1)
+log_debug("get cell a14: {}", a14)
+log_debug("get cell b14: {}", b14)
+log_debug("get cell c14: {}", c14)
+
+--设置单元格值
+book.set_cell_value(1, 1, "word")
+book.set_cell_value(1, 2, 0.5)
+book.set_cell_value(14, 1, 0.6)
+book.set_cell_value(14, 2, 18880)
+book.set_cell_value(14, 3, 0.6)
+book.set_cell_value(1, 3, 88)
+book.set_cell_value(13, 4, nil)
+
+excel.save("test2.xlsx")
 ```
