@@ -9,7 +9,7 @@
   <ItemGroup>
     <ClInclude Include="src\excel.h" />
     <ClInclude Include="src\miniz.h" />
-    <ClInclude Include="src\pugixml.h" />
+    <ClInclude Include="src\pugixml.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\luaxlsx.cpp" />

@@ -7,7 +7,7 @@
     <ClInclude Include="src\miniz.h">
       <Filter>inc</Filter>
     </ClInclude>
-    <ClInclude Include="src\pugixml.h">
+    <ClInclude Include="src\pugixml.hpp">
       <Filter>inc</Filter>
     </ClInclude>
   </ItemGroup>
