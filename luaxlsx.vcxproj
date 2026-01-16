@@ -9,12 +9,12 @@
   <ItemGroup>
     <ClInclude Include="src\excel.h" />
     <ClInclude Include="src\miniz.h" />
-    <ClInclude Include="src\tinyxml2.h" />
+    <ClInclude Include="src\pugixml.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\luaxlsx.cpp" />
     <ClCompile Include="src\miniz.c" />
-    <ClCompile Include="src\tinyxml2.cpp" />
+    <ClCompile Include="src\pugixml.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B2999D78-279A-1A53-CC82-74D494144722}</ProjectGuid>
